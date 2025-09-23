@@ -1,0 +1,27 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div>
+    <label>Nome</label>
+    <input type="text" formControlName="name" />
+    <span *ngIf="name?.invalid && name?.touched">
+      Nome obrigatório (mín. 3 caracteres)
+    </span>
+  </div>
+
+  <div>
+    <label>Email</label>
+    <input type="email" formControlName="email" />
+    <span *ngIf="email?.invalid && email?.touched">
+      Email inválido
+    </span>
+  </div>
+
+  <div>
+    <label>Idade</label>
+    <input type="number" formControlName="age" />
+    <span *ngIf="age?.invalid && age?.touched">
+      Idade mínima é 18 anos
+    </span>
+  </div>
+
+  <button type="submit" [disabled]="form.invalid">Salvar</button>
+</form>
