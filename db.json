@@ -1,0 +1,34 @@
+{
+  "users":
+  [
+    {
+      "id": 1,
+      "name": "Michael Scott",
+      "email": "michael@test.com",
+      "password": "test123",
+      "age": 33
+    },
+    {
+      "id": 2,
+      "name": "Dwight Schurute",
+      "email": "dwight@test.com",
+      "password": "test567",
+      "age": 35
+    },
+    {
+      "id": 3,
+      "name": "Jim Halpert",
+      "email": "jim@test.com",
+      "password": "pam123",
+      "age": 28
+    },
+    {
+      "id": 4,
+      "name": "Pam Beesly",
+      "email": "pam@test.com",
+      "password": "jim123",
+      "age": 28
+    }
+
+  ]
+}
