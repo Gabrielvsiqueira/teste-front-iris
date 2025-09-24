@@ -1,22 +1,59 @@
-<h2>Lista de Usuários</h2>
+<mat-card class="user-list-card">
+  <mat-card-title class="title-form"> Lista de Usuários</mat-card-title>
+  <mat-card-content>
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Pesquisar usuários</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Digite nome ou email">
+      <button mat-icon-button matSuffix *ngIf="filterValue" (click)="clearFilter()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
 
-<table>
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Email</th>
-      <th>Idade</th>
-      <th>Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let user of users">
-      <td>{{ user.name }}</td>
-      <td>{{ user.email }}</td>
-      <td>{{ user.age }}</td>
-      <td>
-        <button *ngIf="user.id !== undefined" (click)="deleteUser(user.id)">Excluir</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+    <div class="table-container">
+      <table mat-table [dataSource]="dataSource" class="table-component">
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Nome </th>
+          <td mat-cell *matCellDef="let user"> {{ user.name }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Email </th>
+          <td mat-cell *matCellDef="let user"> {{ user.email }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="age">
+          <th mat-header-cell *matHeaderCellDef> Idade </th>
+          <td mat-cell *matCellDef="let user"> {{ user.age || '-' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Ações </th>
+          <td mat-cell *matCellDef="let user">
+            <button mat-icon-button color="primary" (click)="editUser(user)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" *ngIf="user.id" (click)="deleteUser(user.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+
+    <mat-paginator class="table-component" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+  </mat-card-content>
+</mat-card>
+
+<button mat-fab extended class="add-user-btn" (click)="toggleFormVisibility()">
+  <mat-icon>menu</mat-icon>
+  {{ isFormVisible ? 'Fechar' : 'Adicionar Usuário' }}
+</button>
+
+<app-list-forms *ngIf="isFormVisible" [userToEdit]="selectedUser ?? null" (save)="addUser($event)"
+  (update)="updateUser($event)">
+</app-list-forms>

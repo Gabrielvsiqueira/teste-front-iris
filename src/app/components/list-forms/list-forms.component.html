@@ -1,27 +1,36 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div>
-    <label>Nome</label>
-    <input type="text" formControlName="name" />
-    <span *ngIf="name?.invalid && name?.touched">
-      Nome obrigatório (mín. 3 caracteres)
-    </span>
-  </div>
+<mat-card class="form-component">
+  <mat-card-title class="tittleForm">{{ isEditing ? 'Editar Usuário' : 'Adicionar Usuário' }}</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-  <div>
-    <label>Email</label>
-    <input type="email" formControlName="email" />
-    <span *ngIf="email?.invalid && email?.touched">
-      Email inválido
-    </span>
-  </div>
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Nome</mat-label>
+        <input matInput type="text" formControlName="name" />
+        <mat-error *ngIf="name?.hasError('required')">Nome é obrigatório</mat-error>
+        <mat-error *ngIf="name?.hasError('minlength')">Mínimo de 3 caracteres</mat-error>
+      </mat-form-field>
 
-  <div>
-    <label>Idade</label>
-    <input type="number" formControlName="age" />
-    <span *ngIf="age?.invalid && age?.touched">
-      Idade mínima é 18 anos
-    </span>
-  </div>
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" />
+        <mat-error *ngIf="email?.hasError('required')">Email é obrigatório</mat-error>
+        <mat-error *ngIf="email?.hasError('email')">Formato inválido</mat-error>
+      </mat-form-field>
 
-  <button type="submit" [disabled]="form.invalid">Salvar</button>
-</form>
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Idade</mat-label>
+        <input matInput type="number" formControlName="age" />
+        <mat-error *ngIf="age?.hasError('min')">Idade mínima é 18 anos</mat-error>
+      </mat-form-field>
+
+      <div class="form-actions">
+        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+          {{ isEditing ? 'Atualizar' : 'Salvar' }}
+        </button>
+        <button mat-stroked-button color="warn" type="button" (click)="form.reset(); isEditing=false;">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

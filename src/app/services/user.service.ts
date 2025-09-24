@@ -14,7 +14,8 @@ export class UserService {
   }
 
   create(user: User): Observable<User> {
-    return this.http.post<User>(this.api, user);
+    const { id, ...userWithoutId } = user;
+    return this.http.post<User>(this.api, userWithoutId);
   }
 
   update(user: User): Observable<User> {

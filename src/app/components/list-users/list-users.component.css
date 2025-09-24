@@ -1,0 +1,67 @@
+@media (max-width: 768px) {
+
+  .table-component th,
+  .table-component td {
+    font-size: 0.875rem;
+    padding: 4px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .add-user-btn {
+    bottom: 10px;
+    right: 10px;
+  }
+}
+
+.user-list-card {
+  width: 100%;
+  max-width: 950px;
+  margin: 15px auto;
+  padding: 40px;
+  background: none;
+}
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+
+}
+.table-component {
+  background: none;
+  width: 100%;
+  min-width: 600px;
+}
+
+.user-form-card {
+  margin: 20px;
+  padding: 10px;
+}
+
+.search-field {
+    width: 100%;
+    max-width: 300px;
+}
+
+.add-user-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.title-form {
+  color: #ffff;
+  margin-left: 18px;
+  padding-top: 10px;
+  padding-bottom: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.add-user-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  min-width: 135px;
+  height: 50px;
+  font-size: 16px;
+}
