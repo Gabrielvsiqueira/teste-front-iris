@@ -5,7 +5,7 @@ import { User } from '../models/user.model';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private api = 'http://localhost:3000/users';
+  private api = 'https://api.npoint.io/407eb45441779db1d10d';
 
   constructor(private http: HttpClient) {}
 
